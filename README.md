@@ -15,13 +15,16 @@ module
 -------------
 zookeeper端口:2181
 
-gateway服务器端口:8088
+gateway
 
-gatewaydubbo端口：无
+服务器端口:8088 dubbo端口：20880
 
 影片：
 
 服务端口：8081 dubbo端口：20881
+
+用户：
+服务端口号：8082 dubbo端口号：20882
 
 
 
