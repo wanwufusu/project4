@@ -54,6 +54,13 @@
             <artifactId>zkclient</artifactId>
             <version>0.10</version>
         </dependency>
+
+        <!--api-->
+        <dependency>
+            <groupId>com.stylefeng.guns</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
