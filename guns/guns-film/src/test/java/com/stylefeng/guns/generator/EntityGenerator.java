@@ -29,7 +29,7 @@ public class EntityGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("C:\\javacode\\all\\dubbo\\project4\\guns\\guns-rest\\src\\main\\java");//这里写你自己的java目录
+        gc.setOutputDir("C:\\javacode\\all\\dubbo\\project4\\guns\\guns-film\\src\\main\\java");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
@@ -64,11 +64,11 @@ public class EntityGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.stylefeng.guns.rest.common.persistence.model");
-        pc.setMapper("com.stylefeng.guns.rest.common.persistence.dao");
-        pc.setXml("com.stylefeng.guns.rest.common.persistence.dao.mapping");
-        pc.setService("com.stylefeng.guns.rest.modular.film.service");       //本项目没用，生成之后删掉
-        pc.setServiceImpl("com.stylefeng.guns.rest.modular.film.service.impl");   //本项目没用，生成之后删掉
+        pc.setEntity("com.stylefeng.guns.film.common.persistence.model");
+        pc.setMapper("com.stylefeng.guns.film.common.persistence.dao");
+        pc.setXml("com.stylefeng.guns.film.common.persistence.dao.mapping");
+        pc.setService("com.stylefeng.guns.film.modular.film.testservice");       //本项目没用，生成之后删掉
+        pc.setServiceImpl("com.stylefeng.guns.film.modular.film.testservice.impl");   //本项目没用，生成之后删掉
         pc.setController("TTT");    //本项目没用，生成之后删掉
         mpg.setPackageInfo(pc);
 
