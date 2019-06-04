@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.stylefeng.guns</groupId>
-    <artifactId>guns-user</artifactId>
+    <artifactId>guns-cinema</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
 
-    <name>guns-user</name>
-    <description>guns User服务器</description>
+    <name>guns-cinema</name>
+    <description>guns cinema</description>
 
     <parent>
         <groupId>com.stylefeng</groupId>
@@ -28,27 +28,38 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--通用模块-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
         </dependency>
-        <!--日志包-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!--dubbo相关-->
+        <dependency>
+            <groupId>com.alibaba.spring.boot</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+
+        <!--zookeeper相关-->
+        <dependency>
+            <groupId>com.101tec</groupId>
+            <artifactId>zkclient</artifactId>
+            <version>0.10</version>
+        </dependency>
+
         <!--api-->
         <dependency>
             <groupId>com.stylefeng.guns</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
         </dependency>
     </dependencies>
 
