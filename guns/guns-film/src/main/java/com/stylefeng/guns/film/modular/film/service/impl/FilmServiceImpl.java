@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.film.common.persistence.dao.MtimeBannerTMapper;
 import com.stylefeng.guns.film.common.persistence.dao.MtimeFilmTMapper;
 import com.stylefeng.guns.film.common.persistence.model.Banner;
+import com.stylefeng.guns.film.common.persistence.model.Film;
 import com.stylefeng.guns.film.common.persistence.model.FilmIndexVO;
 import com.stylefeng.guns.film.common.persistence.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,25 @@ public class FilmServiceImpl implements FilmService {
     MtimeFilmTMapper mtimeFilmTMapper;
 
 
+    /**
+     * 查找首页电影信息
+     * @return
+     */
     @Override
     public FilmIndexVO queryIndexInfo() {
         List<Banner> banners = mtimeBannerTMapper.selectAllBanners();
-        return FilmIndexVO.setIndexFilm(banners,0,null,0,null,null,
-                null,null);
+        Integer queryHotFilmsNum = mtimeFilmTMapper.queryHotFilmsNum();
+        List<Film> queryHotFilms = mtimeFilmTMapper.queryHotFilms();
+        Integer querySoonFilmsNum = mtimeFilmTMapper.querySoonFilmsNum();
+        List<Film> querySoonFilms = mtimeFilmTMapper.querySoonFilms();
+        List<Film> queryBoxRanking = mtimeFilmTMapper.queryBoxRanking();
+        List<Film> queryExpectRanking = mtimeFilmTMapper.queryExpectRanking();
+        List<Film> queryTop100 = mtimeFilmTMapper.queryTop100();
+        return FilmIndexVO.setIndexFilm(banners,
+                queryHotFilmsNum,queryHotFilms,
+                querySoonFilmsNum,querySoonFilms,
+                queryBoxRanking,
+                queryExpectRanking,
+                queryTop100);
     }
 }

@@ -4,21 +4,105 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.film.common.persistence.model.Film">
-        <id column="UUID" property="uuid" />
+        <id column="UUID" property="filmId" />
         <result column="film_name" property="filmName" />
         <result column="film_type" property="filmType" />
         <result column="img_address" property="imgAddress" />
         <result column="film_score" property="filmScore" />
         <result column="film_preSaleNum" property="filmPresalenum" />
-        <result column="film_box_office" property="filmBoxOffice" />
+        <result column="film_box_office" property="boxNum" />
         <result column="film_source" property="filmSource" />
         <result column="film_cats" property="filmCats" />
         <result column="film_area" property="filmArea" />
         <result column="film_date" property="filmDate" />
-        <result column="film_time" property="filmTime" />
-        <result column="film_status" property="filmStatus" />
-        <result column="film_expectNum" property="filmExpectnum" />
+        <result column="film_time" property="showTime" />
+        <result column="film_expectNum" property="expectNum" />
     </resultMap>
+
+    <sql id="Normal_List">
+        UUID, film_type, img_address, film_name, film_status
+    </sql>
+    <!--查询热映电影-->
+    <select id="queryHotFilms" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Normal_List"/>, film_score
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '1'
+    </select>
+    <!--查询热映电影数量-->
+    <select id="queryHotFilmsNum" resultType="_int">
+        SELECT
+        count(*)
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '1'
+    </select>
+    <!--查询即将上映电影-->
+    <select id="querySoonFilms" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Normal_List"/>, film_expectNum, film_time
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '2'
+    </select>
+    <!--查询即将上映电影数量-->
+    <select id="querySoonFilmsNum" resultType="_int">
+        SELECT
+        count(*)
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '2'
+    </select>
+    <!--查询电影按票房排序-->
+    <select id="queryBoxRanking" resultMap="BaseResultMap">
+        SELECT
+        UUID, img_address, film_name, film_status, film_box_office
+        FROM
+        mtime_film_t
+        ORDER BY
+        film_box_office
+    </select>
+    <!--查询电影按票房排序-->
+    <select id="queryBoxRanking" resultMap="BaseResultMap">
+        SELECT
+        UUID, img_address, film_name, film_status, film_box_office
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '1'
+        ORDER BY
+        film_box_office
+        desc
+    </select>
+    <!--查询电影按热度排序-->
+    <select id="queryExpectRanking" resultMap="BaseResultMap">
+        SELECT
+        UUID, img_address, film_name, film_status, film_expectNum
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '1'
+        ORDER BY
+        film_expectNum
+        desc
+    </select>
+    <!--查询分数前100的电影-->
+    <select id="queryTop100" resultMap="BaseResultMap">
+        SELECT
+        UUID, img_address, film_name, film_status, film_score
+        FROM
+        mtime_film_t
+        WHERE
+        film_status = '1'
+        ORDER BY
+        film_score
+        desc
+    </select>
 
 
 </mapper>

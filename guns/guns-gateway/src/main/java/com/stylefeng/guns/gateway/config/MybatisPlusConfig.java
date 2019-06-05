@@ -1,4 +1,4 @@
-package com.stylefeng.guns.cinema.config;
+package com.stylefeng.guns.gateway.config;
 
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017年8月23日12:51:41
  */
 @Configuration
-@MapperScan(basePackages = {"com.stylefeng.guns.cinema.common.persistence.dao","com.stylefeng.guns.cinema.*.dao"})
+@MapperScan(basePackages = {"com.stylefeng.guns.gateway.*.dao", "com.stylefeng.guns.gateway.common.persistence.dao"})
 public class MybatisPlusConfig {
 
     /**
