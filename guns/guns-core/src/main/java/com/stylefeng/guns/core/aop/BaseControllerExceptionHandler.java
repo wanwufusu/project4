@@ -1,6 +1,7 @@
 package com.stylefeng.guns.core.aop;
 
 import com.stylefeng.guns.core.base.tips.ErrorTip;
+import com.stylefeng.guns.core.base.tips.MyErrorTip;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.exception.GunsExceptionEnum;
 import org.slf4j.Logger;
@@ -26,9 +27,9 @@ public class BaseControllerExceptionHandler {
     @ExceptionHandler(GunsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(GunsException e) {
-        log.error("业务异常:", e);
-        return new ErrorTip(e.getCode(), e.getMessage());
+    public MyErrorTip notFount(GunsException e) {
+        log.error("自定义异常:", e);
+        return new MyErrorTip(e.getCode(), e.getMessage());
     }
 
     /**
@@ -39,7 +40,7 @@ public class BaseControllerExceptionHandler {
     @ResponseBody
     public ErrorTip notFount(RuntimeException e) {
         log.error("运行时异常:", e);
-        return new ErrorTip(GunsExceptionEnum.SERVER_ERROR.getCode(), GunsExceptionEnum.SERVER_ERROR.getMessage());
+            return new ErrorTip(GunsExceptionEnum.SERVER_ERROR.getCode(), GunsExceptionEnum.SERVER_ERROR.getMessage());
     }
 
 }
