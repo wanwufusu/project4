@@ -15,5 +15,12 @@ import java.util.List;
  * @since 2019-06-04
  */
 public interface MtimeFilmTMapper extends BaseMapper<Film> {
+    Integer queryHotFilmsNum();
+    List<Film> queryHotFilms();
+    Integer querySoonFilmsNum();
+    List<Film> querySoonFilms();
+    List<Film> queryBoxRanking();
+    List<Film> queryExpectRanking();
+    List<Film> queryTop100();
 
 }
