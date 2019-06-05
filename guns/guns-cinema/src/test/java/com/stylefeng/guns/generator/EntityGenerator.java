@@ -28,8 +28,9 @@ public class EntityGenerator {
         AutoGenerator mpg = new AutoGenerator();
 
         // 全局配置
+        //D:\ssm\project4\guns\guns-cinema\src\main\java
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("C:\\javacode\\all\\dubbo\\project4\\guns\\guns-film\\src\\main\\java");//这里写你自己的java目录
+        gc.setOutputDir("D:\\ssm\\project4\\guns\\guns-cinema\\src\\main\\java");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
@@ -58,17 +59,17 @@ public class EntityGenerator {
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[]{"mtime_film_t"});//生成表名
+        strategy.setInclude(new String[]{"mtime_hall_film_info_t"});//生成表名
         mpg.setStrategy(strategy);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.stylefeng.guns.film.common.persistence.model");
-        pc.setMapper("com.stylefeng.guns.film.common.persistence.dao");
-        pc.setXml("com.stylefeng.guns.film.common.persistence.dao.mapping");
-        pc.setService("com.stylefeng.guns.film.modular.film.testservice");       //本项目没用，生成之后删掉
-        pc.setServiceImpl("com.stylefeng.guns.film.modular.film.testservice.impl");   //本项目没用，生成之后删掉
+        pc.setEntity("com.stylefeng.guns.cinema.common.persistence.model");
+        pc.setMapper("com.stylefeng.guns.cinema.common.persistence.dao");
+        pc.setXml("com.stylefeng.guns.cinema.common.persistence.dao.mapping");
+        pc.setService("com.stylefeng.guns.cinema.modular.cinema.testservice");       //本项目没用，生成之后删掉
+        pc.setServiceImpl("com.stylefeng.guns.cinema.modular.cinema.testservice.impl");   //本项目没用，生成之后删掉
         pc.setController("TTT");    //本项目没用，生成之后删掉
         mpg.setPackageInfo(pc);
 

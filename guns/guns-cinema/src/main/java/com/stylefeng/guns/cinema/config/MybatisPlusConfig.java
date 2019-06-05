@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017年8月23日12:51:41
  */
 @Configuration
-@MapperScan(basePackages = {"com.stylefeng.guns.film.*.dao", "com.stylefeng.guns.film.common.persistence.dao"})
+@MapperScan(basePackages = {"com.stylefeng.guns.cinema.common.persistence.dao","com.stylefeng.guns.cinema.*.dao"})
 public class MybatisPlusConfig {
 
     /**
