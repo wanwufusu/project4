@@ -30,22 +30,22 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 用户账号
      */
     @TableField("user_name")
-    private String username;
+    private String userName;
     /**
      * 用户密码
      */
     @TableField("user_pwd")
-    private String userword;
+    private String userPwd;
     /**
      * 用户昵称
      */
     @TableField("nick_name")
-    private String nickname;
+    private String nickName;
     /**
      * 用户性别 0-男，1-女
      */
     @TableField("user_sex")
-    private Integer sex;
+    private Integer userSex;
     /**
      * 出生日期
      */
@@ -58,7 +58,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 用户手机号
      */
     @TableField("user_phone")
-    private String phone;
+    private String userPhone;
     /**
      * 用户住址
      */
@@ -67,7 +67,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 头像URL
      */
     @TableField("head_url")
-    private String headAddress;
+    private String headUrl;
     /**
      * 个人介绍
      */
@@ -81,17 +81,13 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 创建时间
      */
     @TableField("begin_time")
-    private Date createTime;
+    private Date beginTime;
     /**
      * 修改时间
      */
     @TableField("update_time")
     private Date updateTime;
 
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Integer getUuid() {
         return uuid;
@@ -101,36 +97,36 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getUserword() {
-        return userword;
+    public String getUserPwd() {
+        return userPwd;
     }
 
-    public void setUserword(String userword) {
-        this.userword = userword;
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public Integer getSex() {
-        return sex;
+    public Integer getUserSex() {
+        return userSex;
     }
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setUserSex(Integer userSex) {
+        this.userSex = userSex;
     }
 
     public String getBirthday() {
@@ -149,12 +145,12 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
     public String getAddress() {
@@ -165,12 +161,12 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.address = address;
     }
 
-    public String getHeadAddress() {
-        return headAddress;
+    public String getHeadUrl() {
+        return headUrl;
     }
 
-    public void setHeadAddress(String headAddress) {
-        this.headAddress = headAddress;
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
     }
 
     public String getBiography() {
@@ -189,12 +185,12 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.lifeState = lifeState;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getBeginTime() {
+        return beginTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
     }
 
     public Date getUpdateTime() {
@@ -206,29 +202,27 @@ public class MtimeUserT extends Model<MtimeUserT> {
     }
 
     @Override
-    public String toString() {
-        return "MtimeUserT{" +
-                "uuid=" + uuid +
-                ", username='" + username + '\'' +
-                ", userword='" + userword + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", sex=" + sex +
-                ", birthday='" + birthday + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", headAddress='" + headAddress + '\'' +
-                ", biography='" + biography + '\'' +
-                ", lifeState=" + lifeState +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
-    }
-
-    @Override
     protected Serializable pkVal() {
         return this.uuid;
     }
 
-
+    @Override
+    public String toString() {
+        return "MtimeUserT{" +
+        "uuid=" + uuid +
+        ", userName=" + userName +
+        ", userPwd=" + userPwd +
+        ", nickName=" + nickName +
+        ", userSex=" + userSex +
+        ", birthday=" + birthday +
+        ", email=" + email +
+        ", userPhone=" + userPhone +
+        ", address=" + address +
+        ", headUrl=" + headUrl +
+        ", biography=" + biography +
+        ", lifeState=" + lifeState +
+        ", beginTime=" + beginTime +
+        ", updateTime=" + updateTime +
+        "}";
+    }
 }
