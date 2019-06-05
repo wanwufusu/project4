@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.io.Serializable;
 
 /**
@@ -16,84 +18,78 @@ import java.io.Serializable;
  * @author stylefeng
  * @since 2019-06-04
  */
-@TableName("mtime_film_t")
-public class MtimeFilmT extends Model<MtimeFilmT> {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Film implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键编号
      */
-    @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer filmId;
     /**
      * 影片名称
      */
-    @TableField("film_name")
     private String filmName;
     /**
      * 片源类型: 0-2D,1-3D,2-3DIMAX,4-无
      */
-    @TableField("film_type")
     private Integer filmType;
     /**
      * 影片主图地址
      */
-    @TableField("img_address")
     private String imgAddress;
     /**
      * 影片评分
      */
-    @TableField("film_score")
     private String filmScore;
     /**
      * 影片预售数量
      */
-    @TableField("film_preSaleNum")
     private Integer filmPresalenum;
     /**
      * 影片票房：每日更新，以万为单位
      */
-    @TableField("film_box_office")
-    private Integer filmBoxOffice;
+    private Integer boxNum;
     /**
      * 影片片源，参照片源字典表
      */
-    @TableField("film_source")
     private Integer filmSource;
     /**
      * 影片分类，参照分类表,多个分类以#分割
      */
-    @TableField("film_cats")
     private String filmCats;
     /**
      * 影片区域，参照区域表
      */
-    @TableField("film_area")
     private Integer filmArea;
     /**
      * 影片上映年代，参照年代表
      */
-    @TableField("film_date")
     private Integer filmDate;
     /**
      * 影片上映时间
      */
-    @TableField("film_time")
-    private Date filmTime;
+    private Date showTime;
     /**
      * 影片状态,1-正在热映，2-即将上映，3-经典影片
      */
-    @TableField("film_status")
     private Integer filmStatus;
+    /**
+     * 影片期待值，反映观众对该影片的期望
+     */
+    private Integer expectNum;
 
-
-    public Integer getUuid() {
-        return uuid;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public Integer getFilmId() {
+        return filmId;
+    }
+
+    public void setFilmId(Integer filmId) {
+        this.filmId = filmId;
     }
 
     public String getFilmName() {
@@ -136,12 +132,12 @@ public class MtimeFilmT extends Model<MtimeFilmT> {
         this.filmPresalenum = filmPresalenum;
     }
 
-    public Integer getFilmBoxOffice() {
-        return filmBoxOffice;
+    public Integer getBoxNum() {
+        return boxNum;
     }
 
-    public void setFilmBoxOffice(Integer filmBoxOffice) {
-        this.filmBoxOffice = filmBoxOffice;
+    public void setBoxNum(Integer boxNum) {
+        this.boxNum = boxNum;
     }
 
     public Integer getFilmSource() {
@@ -176,12 +172,12 @@ public class MtimeFilmT extends Model<MtimeFilmT> {
         this.filmDate = filmDate;
     }
 
-    public Date getFilmTime() {
-        return filmTime;
+    public Date getShowTime() {
+        return showTime;
     }
 
-    public void setFilmTime(Date filmTime) {
-        this.filmTime = filmTime;
+    public void setShowTime(Date showTime) {
+        this.showTime = showTime;
     }
 
     public Integer getFilmStatus() {
@@ -192,27 +188,31 @@ public class MtimeFilmT extends Model<MtimeFilmT> {
         this.filmStatus = filmStatus;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.uuid;
+    public Integer getExpectNum() {
+        return expectNum;
+    }
+
+    public void setExpectNum(Integer expectNum) {
+        this.expectNum = expectNum;
     }
 
     @Override
     public String toString() {
-        return "MtimeFilmT{" +
-        "uuid=" + uuid +
-        ", filmName=" + filmName +
-        ", filmType=" + filmType +
-        ", imgAddress=" + imgAddress +
-        ", filmScore=" + filmScore +
-        ", filmPresalenum=" + filmPresalenum +
-        ", filmBoxOffice=" + filmBoxOffice +
-        ", filmSource=" + filmSource +
-        ", filmCats=" + filmCats +
-        ", filmArea=" + filmArea +
-        ", filmDate=" + filmDate +
-        ", filmTime=" + filmTime +
-        ", filmStatus=" + filmStatus +
-        "}";
+        return "Film{" +
+                "filmId=" + filmId +
+                ", filmName='" + filmName + '\'' +
+                ", filmType=" + filmType +
+                ", imgAddress='" + imgAddress + '\'' +
+                ", filmScore='" + filmScore + '\'' +
+                ", filmPresalenum=" + filmPresalenum +
+                ", boxNum=" + boxNum +
+                ", filmSource=" + filmSource +
+                ", filmCats='" + filmCats + '\'' +
+                ", filmArea=" + filmArea +
+                ", filmDate=" + filmDate +
+                ", showTime=" + showTime +
+                ", filmStatus=" + filmStatus +
+                ", expectNum=" + expectNum +
+                '}';
     }
 }

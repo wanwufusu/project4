@@ -36,6 +36,8 @@ spring:
     registry: zookeeper://182.61.60.156:2181
   application:
     name: dubbo-gateway
+  jackson:
+    default-property-inclusion: non_null
 
 
 logging:
