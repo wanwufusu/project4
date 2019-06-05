@@ -1,7 +1,7 @@
 package com.stylefeng.guns.user.dao;
 
-import com.stylefeng.guns.user.entity.MtimeUserT;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.stylefeng.guns.user.entity.MtimeUserT;
 
 /**
  * <p>

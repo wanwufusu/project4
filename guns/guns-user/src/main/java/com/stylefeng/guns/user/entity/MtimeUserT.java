@@ -109,12 +109,13 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.username = username;
     }
 
-    public String getUserword() {
+
+    public String getPassword() {
         return password;
     }
 
-    public void setUserword(String userword) {
-        this.password = userword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNickname() {
@@ -210,7 +211,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
         return "MtimeUserT{" +
                 "uuid=" + uuid +
                 ", username='" + username + '\'' +
-                ", userword='" + password + '\'' +
+                ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", sex=" + sex +
                 ", birthday='" + birthday + '\'' +
