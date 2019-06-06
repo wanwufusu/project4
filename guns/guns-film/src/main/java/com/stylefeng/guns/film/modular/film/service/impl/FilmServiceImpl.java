@@ -3,16 +3,14 @@ package com.stylefeng.guns.film.modular.film.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.film.common.exception.FilmException;
-import com.stylefeng.guns.film.common.persistence.dao.MtimeBannerTMapper;
-import com.stylefeng.guns.film.common.persistence.dao.MtimeFilmTMapper;
-import com.stylefeng.guns.film.common.persistence.model.Banner;
-import com.stylefeng.guns.film.common.persistence.model.Film;
-import com.stylefeng.guns.film.common.persistence.model.FilmIndexVO;
+import com.stylefeng.guns.film.common.persistence.dao.*;
+import com.stylefeng.guns.film.common.persistence.model.*;
 
 import com.stylefeng.guns.film.common.persistence.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +29,12 @@ public class FilmServiceImpl implements FilmService {
     MtimeBannerTMapper mtimeBannerTMapper;
     @Autowired
     MtimeFilmTMapper mtimeFilmTMapper;
+    @Autowired
+    MtimeCatDictTMapper mtimeCatDictTMapper;
+    @Autowired
+    MtimeSourceDictTMapper mtimeSourceDictTMapper;
+    @Autowired
+    MtimeYearDictTMapper mtimeYearDictTMapper;
 
 
     /**
@@ -58,5 +62,41 @@ public class FilmServiceImpl implements FilmService {
         } catch (Exception e) {
             throw new GunsException(FilmException.INDEX_SYSTEM_ERROR);
         }
+    }
+
+
+    /**
+     * 查询影片条件的具体实现
+     * @param catId
+     * @param sourceId
+     * @param yearId
+     * @return
+     */
+    @Override
+    public FilmConditionResponseVO queryFilmConditions(Integer catId, Integer sourceId, Integer yearId) {
+        //查询影片类型列表
+        List<CatVo> catVos = new ArrayList<>();
+        if (catId == 99){
+            catVos = mtimeCatDictTMapper.selectAllCats();
+        } else {
+            catVos.add(mtimeCatDictTMapper.selectCatById(catId));
+        }
+        //查询片源列表
+        List<SourceVo> sourceVos = new ArrayList<>();
+        if (sourceId == 99){
+            sourceVos = mtimeSourceDictTMapper.selectAllSources();
+        } else {
+            sourceVos.add(mtimeSourceDictTMapper.selectSourceById(sourceId));
+        }
+        //查询年代列表
+        List<YearVo> yearVos = new ArrayList<>();
+        if (yearId == 99) {
+            yearVos = mtimeYearDictTMapper.selectAllYears();
+        } else {
+            yearVos.add(mtimeYearDictTMapper.selectYearById(yearId));
+        }
+
+        FilmConditionResponseVO filmConditionResponseVO = FilmConditionResponseVO.ok(catVos, sourceVos, yearVos);
+        return filmConditionResponseVO;
     }
 }

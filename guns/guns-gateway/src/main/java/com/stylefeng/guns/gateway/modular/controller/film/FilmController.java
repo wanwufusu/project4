@@ -2,9 +2,11 @@ package com.stylefeng.guns.gateway.modular.controller.film;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.core.exception.GunsException;
+import com.stylefeng.guns.film.common.persistence.model.FilmConditionResponseVO;
 import com.stylefeng.guns.film.common.persistence.model.FilmIndexVO;
 import com.stylefeng.guns.film.common.persistence.service.FilmService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,9 +24,19 @@ public class FilmController {
     @Reference(check = false)
     FilmService filmService;
 
+
     @RequestMapping("getIndex")
     public FilmIndexVO getIndex() throws GunsException {
         FilmIndexVO filmIndexVO = filmService.queryIndexInfo();
         return filmIndexVO;
     }
+
+    @RequestMapping("getConditionList")
+    public FilmConditionResponseVO getConditionList(@RequestParam(defaultValue = "99")Integer catId,
+                                                    @RequestParam(defaultValue = "99")Integer sourceId,
+                                                    @RequestParam(defaultValue = "99")Integer yearId) throws GunsException {
+        FilmConditionResponseVO filmConditionResponseVO = filmService.queryFilmConditions(catId, sourceId, yearId);
+        return filmConditionResponseVO;
+    }
+
 }
