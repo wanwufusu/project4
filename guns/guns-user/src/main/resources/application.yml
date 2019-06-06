@@ -9,6 +9,10 @@ jwt:
   auth-path: auth         #认证请求的路径
   md5-key: randomKey      #md5加密混淆key
 
+redis:
+    host: 182.61.60.156
+    port: 6379
+
 server:
   port: 8082 #项目端口
 
@@ -42,7 +46,7 @@ spring:
       port: 20882
 
 logging:
-  level.root: debug
+  level.root: info
   level.com.stylefeng: debug
   path: logs/
   file: guns-rest.log
