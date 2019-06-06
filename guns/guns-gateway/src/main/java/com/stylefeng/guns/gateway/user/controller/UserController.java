@@ -12,7 +12,7 @@ import com.stylefeng.guns.user.service.UserService;
 @RequestMapping("user")
 public class UserController {
 
-    @Reference
+    @Reference(check = false)
     UserService service;
 
     @RequestMapping("register")
