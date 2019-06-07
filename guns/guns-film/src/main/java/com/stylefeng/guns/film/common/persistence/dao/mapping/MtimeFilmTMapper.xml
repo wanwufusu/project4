@@ -19,6 +19,15 @@
         <result column="film_expectNum" property="expectNum" />
     </resultMap>
 
+    <!-- 条件查询映射结果 -->
+    <resultMap id="ConditionsResultMap" type="com.stylefeng.guns.film.common.persistence.model.Film">
+        <id column="UUID" property="filmId" />
+        <result column="film_name" property="filmName" />
+        <result column="film_type" property="filmType" />
+        <result column="img_address" property="imgAddress" />
+        <result column="film_score" property="filmScore" />
+    </resultMap>
+
     <sql id="Normal_List">
         UUID, film_type, img_address, film_name, film_status
     </sql>
@@ -39,6 +48,57 @@
         mtime_film_t
         WHERE
         film_status = '1'
+    </select>
+    <!--条件查询电影-->
+    <select id="queryFilmsByConditions" resultMap="ConditionsResultMap">
+        SELECT
+        <include refid="Normal_List"/>, film_score, film_cats, film_source, film_date, film_expectNum
+        FROM
+        mtime_film_t
+        <where>
+            film_status = #{conditions.showType}
+            <if test="conditions.catId != 99">
+                and film_cats like concat("%#",#{conditions.catId},"#%")
+            </if>
+            <if test="conditions.sourceId != 99">
+                and film_source = #{conditions.sourceId}
+            </if>
+            <if test="conditions.yearId != 99">
+                and film_date = #{conditions.yearId}
+            </if>
+        </where>
+        <if test="conditions.sortId == 1">
+            ORDER BY film_expectNum
+            desc
+        </if>
+        <if test="conditions.sortId == 2">
+            ORDER BY film_time
+            desc
+        </if>
+        <if test="conditions.sortId == 3">
+            ORDER BY film_score
+            desc
+        </if>
+        limit #{conditions.pageSize} offset #{offset}
+    </select>
+    <!--条件查询电影数量-->
+    <select id="queryFilmsNumByConditions" resultType="_int">
+        SELECT
+        count(*)
+        FROM
+        mtime_film_t
+        <where>
+            film_status = #{conditions.showType}
+            <if test="conditions.catId != 99">
+                and film_cats like  concat("%#",#{conditions.catId},"#%")
+            </if>
+            <if test="conditions.sourceId != 99">
+                and film_source = #{conditions.sourceId}
+            </if>
+            <if test="conditions.yearId != 99">
+                and film_date = #{conditions.yearId}
+            </if>
+        </where>
     </select>
     <!--查询即将上映电影-->
     <select id="querySoonFilms" resultMap="BaseResultMap">
@@ -103,6 +163,5 @@
         film_score
         desc
     </select>
-
 
 </mapper>

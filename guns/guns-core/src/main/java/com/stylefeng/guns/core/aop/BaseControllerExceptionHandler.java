@@ -22,7 +22,7 @@ public class BaseControllerExceptionHandler {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * 拦截业务异常
+     * 拦截自定义异常
      */
     @ExceptionHandler(GunsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

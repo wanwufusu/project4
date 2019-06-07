@@ -34,7 +34,7 @@ public class Film implements Serializable{
     /**
      * 片源类型: 0-2D,1-3D,2-3DIMAX,4-无
      */
-    private Integer filmType;
+    private String filmType;
     /**
      * 影片主图地址
      */
@@ -100,11 +100,11 @@ public class Film implements Serializable{
         this.filmName = filmName;
     }
 
-    public Integer getFilmType() {
+    public String getFilmType() {
         return filmType;
     }
 
-    public void setFilmType(Integer filmType) {
+    public void setFilmType(String filmType) {
         this.filmType = filmType;
     }
 
