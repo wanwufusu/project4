@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.user.common.exception.UserExceptionEnum;
 import com.stylefeng.guns.user.entity.UserVO;
+import com.stylefeng.guns.user.utils.JedisAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     MtimeUserTMapper mapper;
+
+    @Autowired
+    JedisAdapter jedispool;
 
     @Override
     public UserVO register(MtimeUserT user) throws GunsException {
@@ -62,11 +66,72 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean validate(MtimeUserT user) {
-        MtimeUserT userExist = mapper.selectOne(user);
-        if (userExist != null) {
+        List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", user.getUserName()));
+
+        if (user.getPassword()!=userExist.get(0).getPassword()) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public void tokenBuffer(String userName, String token) {
+        int time = 1200;
+        jedispool.setex(userName,time,token);
+    }
+
+    @Override
+    public Boolean isValidate(String userName, String token) {
+        String ofToken = jedispool.get(userName);
+        if (token.equals(ofToken)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public UserVO logout(String userName)  throws GunsException{
+        String s = jedispool.get(userName);
+        if (null==s){
+            throw new GunsException(UserExceptionEnum.LOGOUT_FAIL);
+        }
+        Long i = jedispool.del(userName);
+        if (i==1){
+            return new UserVO(0, "成功退出", null);
+        }else {
+            throw new GunsException(UserExceptionEnum.USER_SYSTEM_ERROR);
+        }
+    }
+
+    @Override
+    public UserVO getUserInfo(String userName)  throws GunsException{
+        String s = jedispool.get(userName);
+        if (null==s){
+            throw new GunsException(UserExceptionEnum.LOGOUT_FAIL);
+        }
+        try {
+            List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", userName));
+            return new UserVO(0, null, userExist.get(0));
+        }catch (Exception e){
+            throw new GunsException(UserExceptionEnum.USER_SYSTEM_ERROR);
+        }
+    }
+
+    @Override
+    public UserVO updateUserInfo(MtimeUserT user) throws GunsException {
+        try {
+            Integer i = mapper.updateById(user);
+            if (i != 1) {
+                throw new GunsException(UserExceptionEnum.USER_INFO_UPDATE_ERROR);
+            }
+            MtimeUserT newUser = mapper.selectOne(user);
+            return new UserVO(0, null, newUser);
+        }catch (GunsException e){
+            throw e;
+        }
+        catch (Exception e){
+            throw new GunsException(UserExceptionEnum.USER_SYSTEM_ERROR);
         }
     }
 }

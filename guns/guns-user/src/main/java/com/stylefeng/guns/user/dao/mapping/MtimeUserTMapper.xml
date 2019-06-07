@@ -5,7 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.user.entity.MtimeUserT">
         <id column="UUID" property="uuid" />
-        <result column="user_name" property="username" />
+        <result column="user_name" property="userName" />
         <result column="user_pwd" property="password" />
         <result column="nick_name" property="nickname" />
         <result column="user_sex" property="sex" />
@@ -19,5 +19,11 @@
         <result column="begin_time" property="creatTime" />
         <result column="update_time" property="updateTime" />
     </resultMap>
+
+
+   <!-- <select id="validate"  resultMap="BaseResultMap">
+        select user_name,user_pwd from mtime_user_t
+        where user_name = #{userName} and user_pwd= #{password}
+    </select>-->
 
 </mapper>

@@ -5,7 +5,9 @@ import com.stylefeng.guns.core.util.RenderUtil;
 import com.stylefeng.guns.gateway.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.gateway.config.properties.JwtProperties;
 import com.stylefeng.guns.gateway.modular.auth.util.JwtTokenUtil;
+import com.stylefeng.guns.user.service.UserService;
 import io.jsonwebtoken.JwtException;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class AuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtProperties jwtProperties;
 
+    @Reference
+    UserService service;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
@@ -54,6 +59,13 @@ public class AuthFilter extends OncePerRequestFilter {
             } catch (JwtException e) {
                 //有异常就是token解析失败
                 RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+                return;
+            }
+
+            //验证redis里面是否有登录;传入用户名，token
+            Boolean validate = service.isValidate(jwtTokenUtil.getUsernameFromToken(authToken), authToken);
+            if (!validate){
+                RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
                 return;
             }
         } else {

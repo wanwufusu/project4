@@ -13,4 +13,6 @@ import com.stylefeng.guns.user.entity.MtimeUserT;
  */
 public interface MtimeUserTMapper extends BaseMapper<MtimeUserT> {
 
+   // MtimeUserT validate(MtimeUserT user);
+
 }
