@@ -3,6 +3,8 @@ package com.stylefeng.guns.film;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
+import java.util.Arrays;
+
 /**
  * 〈一句话功能简述〉<br>
  * 〈〉
@@ -15,6 +17,9 @@ import redis.clients.jedis.Jedis;
 public class MyTest {
     @Test
     public void test1(){
-        Jedis jedis = new Jedis();
+        String s = "##2#22##55###55#";
+        String[] split = s.split("#");
+        String s1 = Arrays.toString(split);
+        System.out.println(s1);
     }
 }
