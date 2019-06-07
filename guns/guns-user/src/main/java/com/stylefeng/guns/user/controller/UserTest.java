@@ -1,5 +1,7 @@
 package com.stylefeng.guns.user.controller;
 
+import com.stylefeng.guns.core.exception.GunsException;
+import com.stylefeng.guns.user.common.exception.UserExceptionEnum;
 import com.stylefeng.guns.user.entity.MtimeUserT;
 import com.stylefeng.guns.user.entity.UserVO;
 import com.stylefeng.guns.user.service.UserService;
@@ -18,15 +20,9 @@ public class UserTest {
     JedisAdapter jedisAdapter;
 
     @RequestMapping("register")
-    public UserVO register(MtimeUserT user){
-        Integer i = service.register(user);
-        if (i==1){
-            return new UserVO(0,"注册成功",null);
-        }else if (i==0){
-            return new UserVO(1,"用户已存在",null);
-        }else {
-            return new UserVO(999,"系统出现异常，请联系管理员",null);
-        }
+    public UserVO register(MtimeUserT user) throws Exception {
+        service.register(user);
+        return new UserVO(0,"注册成功",null);
     }
 
     @RequestMapping("test")

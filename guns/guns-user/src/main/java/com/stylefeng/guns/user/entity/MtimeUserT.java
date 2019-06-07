@@ -1,12 +1,13 @@
 package com.stylefeng.guns.user.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -30,7 +31,7 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 用户账号
      */
     @TableField("user_name")
-    private String username;
+    private String userName;
     /**
      * 用户密码
      */
@@ -101,13 +102,6 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
 
     public String getPassword() {
@@ -206,11 +200,15 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.updateTime = updateTime;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
     @Override
     public String toString() {
         return "MtimeUserT{" +
                 "uuid=" + uuid +
-                ", username='" + username + '\'' +
+                ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", sex=" + sex +
@@ -224,6 +222,10 @@ public class MtimeUserT extends Model<MtimeUserT> {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override

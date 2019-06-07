@@ -1,10 +1,9 @@
 package com.stylefeng.guns.user.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.io.Serializable;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserVO<T> {
+public class UserVO<T> implements Serializable {
     private Integer status;
     private String msg;
     private T data;
