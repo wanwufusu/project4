@@ -165,10 +165,15 @@ public class FilmServiceImpl implements FilmService {
         if (filmDetailData == null) {
             throw new GunsException(FilmException.FILMDETAIL_ERROR);
         }
-        String id = filmDetailData.getFilmId();
-        //获取电影的4列详细信息
-        getFilmDetailsInfo(filmDetailData, id);
-        return FilmDetailVO.ok(filmDetailData);
+        try {
+
+            String id = filmDetailData.getFilmId();
+            //获取电影的4列详细信息
+            getFilmDetailsInfo(filmDetailData, id);
+            return FilmDetailVO.ok(filmDetailData);
+        }catch (Exception e){
+            throw new GunsException(FilmException.INDEX_SYSTEM_ERROR);
+        }
     }
 
     @Override
