@@ -196,6 +196,13 @@ public class FilmServiceImpl implements FilmService {
         List<Actor> actors = getFilmActors(id);
         ImgVO imgVO = getImgVO(id);
 
+        String scoreNum = filmDetailData.getScoreNum();
+        scoreNum += "万人评分";
+        filmDetailData.setScoreNum(scoreNum);
+
+        double totalBox = Double.valueOf(filmDetailData.getTotalBox()) / 10000;
+        filmDetailData.setTotalBox(totalBox + "亿");
+
         filmDetailData.setInfo01(info01);
         filmDetailData.setInfo02(info02);
         filmDetailData.setInfo03(info03);
