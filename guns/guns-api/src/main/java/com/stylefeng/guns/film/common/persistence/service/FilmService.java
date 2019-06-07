@@ -1,10 +1,7 @@
 package com.stylefeng.guns.film.common.persistence.service;
 
 import com.stylefeng.guns.core.exception.GunsException;
-import com.stylefeng.guns.film.common.persistence.model.FilmConditionResponseVO;
-import com.stylefeng.guns.film.common.persistence.model.FilmIndexVO;
-import com.stylefeng.guns.film.common.persistence.model.FilmQueryVO;
-import com.stylefeng.guns.film.common.persistence.model.FilmRequestVO;
+import com.stylefeng.guns.film.common.persistence.model.*;
 
 public interface FilmService {
     FilmIndexVO queryIndexInfo() throws GunsException;
@@ -16,4 +13,8 @@ public interface FilmService {
     FilmQueryVO querySoonFilmsByCondition(FilmRequestVO filmRequestVO) throws GunsException;
 
     FilmQueryVO queryClassicFilmsByCondition(FilmRequestVO filmRequestVO) throws GunsException;
+
+    FilmDetailVO queryFilmDetailsById(String filmId) throws GunsException;
+
+    FilmDetailVO queryFilmDetailByName(String filmName) throws GunsException;
 }

@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.film.common.persistence.model.*;
 import com.stylefeng.guns.film.common.persistence.service.FilmService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +48,15 @@ public class FilmController {
             return filmService.querySoonFilmsByCondition(filmRequestVO);
         } else {
             return filmService.queryClassicFilmsByCondition(filmRequestVO);
+        }
+    }
+
+    @RequestMapping("films/{filmTag}")
+    public FilmDetailVO getFilmDetail(int searchType, @PathVariable("filmTag") String filmTag){
+        if (searchType == 0) {
+            return filmService.queryFilmDetailsById(filmTag);
+        } else {
+            return filmService.queryFilmDetailByName(filmTag);
         }
     }
 

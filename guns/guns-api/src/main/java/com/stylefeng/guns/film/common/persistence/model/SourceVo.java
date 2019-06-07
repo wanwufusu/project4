@@ -1,5 +1,6 @@
 package com.stylefeng.guns.film.common.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,4 +18,9 @@ public class SourceVo implements Serializable {
     private String sourceId;
     private String sourceName;
     private boolean isActive = false;
+
+    @JsonProperty(value = "isActive")
+    public boolean getIsActive() {
+        return isActive;
+    }
 }

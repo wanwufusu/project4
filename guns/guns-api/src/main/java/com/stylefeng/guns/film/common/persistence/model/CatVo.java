@@ -1,5 +1,6 @@
 package com.stylefeng.guns.film.common.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -17,4 +18,8 @@ public class CatVo implements Serializable {
     private String catId;
     private String catName;
     private boolean isActive = false;
+
+    public boolean getIsActive() {
+        return isActive;
+    }
 }
