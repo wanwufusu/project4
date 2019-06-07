@@ -35,14 +35,16 @@ public class AuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+        //放行：登录路径
         if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
             chain.doFilter(request, response);
             return;
         }
+        //从yml取得Authorization，取得这个请求头
         final String requestHeader = request.getHeader(jwtProperties.getHeader());
         String authToken = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
-            authToken = requestHeader.substring(7);
+            authToken = requestHeader.substring(7);//舍弃掉"bearer "七个字符
 
             //验证token是否过期,包含了验证jwt是否正确
             try {
