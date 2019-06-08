@@ -68,8 +68,8 @@ public class EntityGenerator {
         pc.setEntity("com.stylefeng.guns.cinema.common.persistence.model");
         pc.setMapper("com.stylefeng.guns.cinema.common.persistence.dao");
         pc.setXml("com.stylefeng.guns.cinema.common.persistence.dao.mapping");
-        pc.setService("com.stylefeng.guns.cinema.modular.cinema.testservice");       //本项目没用，生成之后删掉
-        pc.setServiceImpl("com.stylefeng.guns.cinema.modular.cinema.testservice.impl");   //本项目没用，生成之后删掉
+        pc.setService("com.stylefeng.guns.cinema.modular.cinema.service");       //本项目没用，生成之后删掉
+        pc.setServiceImpl("com.stylefeng.guns.cinema.modular.cinema.service.impl");   //本项目没用，生成之后删掉
         pc.setController("TTT");    //本项目没用，生成之后删掉
         mpg.setPackageInfo(pc);
 

@@ -1,8 +1,8 @@
-package com.stylefeng.guns.cinema.modular.cinema.testservice.impl;
+package com.stylefeng.guns.cinema.modular.cinema.service.impl;
 
 import com.stylefeng.guns.cinema.common.persistence.model.MtimeHallDictT;
 import com.stylefeng.guns.cinema.common.persistence.dao.MtimeHallDictTMapper;
-import com.stylefeng.guns.cinema.modular.cinema.testservice.IMtimeHallDictTService;
+import com.stylefeng.guns.cinema.modular.cinema.service.IMtimeHallDictTService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

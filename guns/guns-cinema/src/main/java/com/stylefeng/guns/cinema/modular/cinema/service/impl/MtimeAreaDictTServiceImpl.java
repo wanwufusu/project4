@@ -1,8 +1,8 @@
-package com.stylefeng.guns.cinema.modular.cinema.testservice.impl;
+package com.stylefeng.guns.cinema.modular.cinema.service.impl;
 
 import com.stylefeng.guns.cinema.common.persistence.model.MtimeAreaDictT;
 import com.stylefeng.guns.cinema.common.persistence.dao.MtimeAreaDictTMapper;
-import com.stylefeng.guns.cinema.modular.cinema.testservice.IMtimeAreaDictTService;
+import com.stylefeng.guns.cinema.modular.cinema.service.IMtimeAreaDictTService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

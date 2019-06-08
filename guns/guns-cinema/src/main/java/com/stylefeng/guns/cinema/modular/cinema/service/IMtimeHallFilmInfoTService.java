@@ -1,4 +1,4 @@
-package com.stylefeng.guns.cinema.modular.cinema.testservice;
+package com.stylefeng.guns.cinema.modular.cinema.service;
 
 import com.stylefeng.guns.cinema.common.persistence.model.MtimeHallFilmInfoT;
 import com.baomidou.mybatisplus.service.IService;
