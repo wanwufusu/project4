@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cinema")
 public class CinemaController {
-    @Reference
+    @Reference(check = false)
     CinemaService cinemaService;
     @GetMapping("/getCinemas")
     public ResponseVo getCinemas(RequestVo requestVo){

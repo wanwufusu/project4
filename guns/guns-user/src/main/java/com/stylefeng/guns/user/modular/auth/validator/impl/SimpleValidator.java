@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 直接验证账号密码是不是admin
+ * 已停用 ——杨渝挺
  *
  * @author fengshuonan
  * @date 2017-08-23 12:34
