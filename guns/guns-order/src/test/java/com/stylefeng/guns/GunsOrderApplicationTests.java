@@ -23,8 +23,9 @@ public class GunsOrderApplicationTests {
 
 	@Test
 	public void MyTest(){
-		OrderResponseVO<List<MoocOrder>> admin = orderService.getOrderInfo(1, 5, "admin");
-		System.out.println(admin);
+/*		OrderResponseVO<List<MoocOrder>> admin = orderService.getOrderInfo(1, 5, "admin");
+		System.out.println(admin);*/
+		orderService.isIllegalSeat("123");
 	}
 
 

@@ -20,4 +20,6 @@ public interface MoocOrderTMapper extends BaseMapper<MoocOrder> {
     List<MoocOrder> selectMoocOrderByUser(@Param("username")String userName,
                                           @Param("offset")int offset,
                                           @Param("pageSize")int pageSize);
+
+    List<String> selectSoldSeats(Integer fieldId);
 }

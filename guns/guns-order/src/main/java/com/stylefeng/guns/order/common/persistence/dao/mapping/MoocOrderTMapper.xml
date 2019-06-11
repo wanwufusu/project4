@@ -44,4 +44,14 @@
         limit #{pageSize} offset #{offset}
     </select>
 
+    <!--座位-->
+    <select id="selectSoldSeats" resultType="string">
+        SELECT
+        seats_ids
+        from
+        mooc_order_t
+        where
+        field_id = #{fieldId}
+    </select>
+
 </mapper>
