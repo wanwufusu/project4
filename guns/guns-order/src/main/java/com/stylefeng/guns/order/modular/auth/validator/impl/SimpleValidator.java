@@ -1,12 +1,11 @@
-package com.stylefeng.guns.user.modular.auth.validator.impl;
+package com.stylefeng.guns.order.modular.auth.validator.impl;
 
-import com.stylefeng.guns.user.modular.auth.validator.IReqValidator;
-import com.stylefeng.guns.user.modular.auth.validator.dto.Credence;
+import com.stylefeng.guns.order.modular.auth.validator.IReqValidator;
+import com.stylefeng.guns.order.modular.auth.validator.dto.Credence;
 import org.springframework.stereotype.Service;
 
 /**
  * 直接验证账号密码是不是admin
- * 已停用 ——杨渝挺
  *
  * @author fengshuonan
  * @date 2017-08-23 12:34

@@ -2,6 +2,10 @@ package com.stylefeng.guns.user.dao;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.stylefeng.guns.user.entity.MtimeUserT;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +17,19 @@ import com.stylefeng.guns.user.entity.MtimeUserT;
  */
 public interface MtimeUserTMapper extends BaseMapper<MtimeUserT> {
 
-   // MtimeUserT validate(MtimeUserT user);
+    MtimeUserT validate(@Param("user") MtimeUserT user);
+
+    MtimeUserT selectUserByName(@Param("name") String username);
+
+    MtimeUserT selectUserById(@Param("id") int id);
+
+    Integer updateUserById(@Param("user") MtimeUserT user);
+
+
+
+
+
+
+
 
 }

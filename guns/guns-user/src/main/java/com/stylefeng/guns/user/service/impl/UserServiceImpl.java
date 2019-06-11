@@ -3,6 +3,7 @@ package com.stylefeng.guns.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.exception.GunsException;
+import com.stylefeng.guns.core.util.MD5Util;
 import com.stylefeng.guns.user.common.exception.UserExceptionEnum;
 import com.stylefeng.guns.user.entity.UserVO;
 import com.stylefeng.guns.user.utils.JedisAdapter;
@@ -31,6 +32,7 @@ public class UserServiceImpl implements UserService {
             if (isUserName(user.getUserName())) {
                 throw new GunsException(UserExceptionEnum.USER_OCCUPIED_ERROR);
             }
+            user.setPassword(MD5Util.encrypt(user.getPassword()));
             mapper.insert(user);
         } catch (GunsException e) {
             throw e;
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
         return new UserVO(0, "验证成功", null);
     }
 
+
     @Override
     public Boolean isUserName(String username) {
         List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", username));
@@ -64,11 +67,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * 登录时与SQL验证账户名与密码
+     * @param user
+     * @return
+     */
     @Override
     public Boolean validate(MtimeUserT user) {
         List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", user.getUserName()));
-
-        if (user.getPassword()!=userExist.get(0).getPassword()) {
+        if (userExist.size()==0){
+            return false;
+        }
+        if (MD5Util.encrypt(user.getPassword())!=userExist.get(0).getPassword()) {
             return true;
         } else {
             return false;
