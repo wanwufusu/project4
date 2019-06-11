@@ -24,7 +24,7 @@ public class CinemaController {
         ResponseVo responseVo = cinemaService.findCinemaMsgByCondition(requestVo);
         return responseVo;
     }
-    @RequestMapping("/getFileds")
+    @RequestMapping("/getFields")
     public ResponseVo getFileds(String cinemaId){
         ResponseVo responseVo = cinemaService.getFiled(cinemaId);
         return responseVo;
