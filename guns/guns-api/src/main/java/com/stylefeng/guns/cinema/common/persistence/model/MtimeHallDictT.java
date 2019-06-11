@@ -20,6 +20,15 @@ import java.io.Serializable;
 public class MtimeHallDictT extends Model<MtimeHallDictT> {
 
     private static final long serialVersionUID = 1L;
+    private Boolean isActive = false;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
     /**
      * 主键编号
@@ -106,6 +115,15 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
     public void setHallTypeName(String hallTypeName) {
         this.hallTypeName = hallTypeName;
     }
+
+    public String getSeatAddress() {
+        return seatAddress;
+    }
+
+    public void setSeatAddress(String seatAddress) {
+        this.seatAddress = seatAddress;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.hallFieldId;

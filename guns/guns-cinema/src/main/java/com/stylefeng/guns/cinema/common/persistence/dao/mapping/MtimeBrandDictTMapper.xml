@@ -4,8 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.cinema.common.persistence.model.MtimeBrandDictT">
-        <id column="UUID" property="uuid" />
-        <result column="show_name" property="showName" />
+        <id column="UUID" property="brandId" />
+        <result column="show_name" property="brandName" />
     </resultMap>
-
+    <select id="findById" resultMap="BaseResultMap">
+        select UUID ,show_name from mtime_brand_dict_t
+        <where>
+            <if test="brandId!=99">
+                UUID=#{brandId}
+            </if>
+        </where>
+    </select>
 </mapper>

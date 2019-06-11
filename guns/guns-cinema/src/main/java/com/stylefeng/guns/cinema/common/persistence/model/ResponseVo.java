@@ -6,6 +6,33 @@ public class ResponseVo implements Serializable {
     Integer status;
     private String imgPre;
     Data data;
+    Integer nowPage;
+    Integer totalPage;
+    private String msg;
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public Integer getNowPage() {
+        return nowPage;
+    }
+
+    public void setNowPage(Integer nowPage) {
+        this.nowPage = nowPage;
+    }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
+    }
 
     public Integer getStatus() {
         return status;
@@ -37,6 +64,9 @@ public class ResponseVo implements Serializable {
                 "status=" + status +
                 ", imgPre='" + imgPre + '\'' +
                 ", data=" + data +
+                ", nowPage=" + nowPage +
+                ", totalPage=" + totalPage +
+                ", msg='" + msg + '\'' +
                 '}';
     }
 }

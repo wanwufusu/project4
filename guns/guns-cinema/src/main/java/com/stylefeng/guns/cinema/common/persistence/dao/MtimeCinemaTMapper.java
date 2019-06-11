@@ -2,6 +2,7 @@ package com.stylefeng.guns.cinema.common.persistence.dao;
 
 import com.stylefeng.guns.cinema.common.persistence.model.MtimeCinemaT;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.stylefeng.guns.cinema.common.persistence.model.RequestVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,4 +18,6 @@ import java.util.List;
 public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
     MtimeCinemaT findByCinemaId(@Param("cinemaId") String cinemaId);
+
+    List<MtimeCinemaT> findByCondition(@Param("requestVo") RequestVo requestVo);
 }

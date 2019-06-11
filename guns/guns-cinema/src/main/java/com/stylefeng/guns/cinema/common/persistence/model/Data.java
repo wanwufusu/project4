@@ -8,6 +8,42 @@ public class Data implements Serializable {
     List<MtimeHallFilmInfoT> filmList;
     MtimeHallDictT hallInfo;
     MtimeHallFilmInfoT filmInfo;
+    List<MtimeCinemaT> data;
+    List<MtimeBrandDictT> brandList;
+    List<MtimeAreaDictT> areaList;
+    List<MtimeHallDictT> halltypeList;
+
+    public List<MtimeBrandDictT> getBrandList() {
+        return brandList;
+    }
+
+    public void setBrandList(List<MtimeBrandDictT> brandList) {
+        this.brandList = brandList;
+    }
+
+    public List<MtimeAreaDictT> getAreaList() {
+        return areaList;
+    }
+
+    public void setAreaList(List<MtimeAreaDictT> areaList) {
+        this.areaList = areaList;
+    }
+
+    public List<MtimeHallDictT> getHalltypeList() {
+        return halltypeList;
+    }
+
+    public void setHalltypeList(List<MtimeHallDictT> halltypeList) {
+        this.halltypeList = halltypeList;
+    }
+
+    public List<MtimeCinemaT> getData() {
+        return data;
+    }
+
+    public void setData(List<MtimeCinemaT> data) {
+        this.data = data;
+    }
 
     public MtimeHallFilmInfoT getFilmInfo() {
         return filmInfo;

@@ -20,45 +20,59 @@ import java.io.Serializable;
 public class MtimeBrandDictT extends Model<MtimeBrandDictT> {
 
     private static final long serialVersionUID = 1L;
+    private Boolean isActive = false;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
     /**
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer brandId;
     /**
      * 显示名称
      */
     @TableField("show_name")
-    private String showName;
+    private String brandName;
 
 
-    public Integer getUuid() {
-        return uuid;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public Integer getBrandId() {
+        return brandId;
     }
 
-    public String getShowName() {
-        return showName;
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
     }
 
-    public void setShowName(String showName) {
-        this.showName = showName;
+    public String getBrandName() {
+        return brandName;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.uuid;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     @Override
     public String toString() {
         return "MtimeBrandDictT{" +
-        "uuid=" + uuid +
-        ", showName=" + showName +
-        "}";
+                "brandId=" + brandId +
+                ", brandName='" + brandName + '\'' +
+                '}';
     }
+
+    @Override
+    protected Serializable pkVal() {
+        return this.brandId;
+    }
+
 }

@@ -17,6 +17,20 @@
     <sql id="Base_List">
         UUID,cinema_name,cinema_phone,brand_id,area_id,hall_ids,img_address,cinema_address,minimum_price
     </sql>
+    <select id="findByCondition" resultMap="BaseResultMap">
+    select UUID,cinema_name,cinema_address,minimum_price from mtime_cinema_t
+    <where>
+        <if test="requestVo.brandId!=99">
+            brand_id=#{requestVo.brandId}
+        </if>
+        <if test="requestVo.hallType!=99">
+            and hall_ids like concat('%#',#{requestVo.hallType},'#%')
+        </if>
+        <if test="requestVo.districtId!=99">
+            and area_id=#{requestVo.districtId}
+        </if>
+    </where>
+    </select>
     <select id="findByCinemaId" resultMap="BaseResultMap">
         select
         <include refid="Base_List"/>
