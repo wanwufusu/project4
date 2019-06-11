@@ -34,7 +34,7 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer hallTypeId;
+    private Integer halltypeId;
 
     private String seatFile;
 
@@ -49,7 +49,7 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
      * 显示名称
      */
     @TableField("show_name")
-    private String hallTypeName;
+    private String halltypeName;
     /**
      * 座位文件存放地址
      */
@@ -60,12 +60,12 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
         return serialVersionUID;
     }
 
-    public Integer getHallTypeId() {
-        return hallTypeId;
+    public Integer getHalltypeId() {
+        return halltypeId;
     }
 
-    public void setHallTypeId(Integer hallTypeId) {
-        this.hallTypeId = hallTypeId;
+    public void setHalltypeId(Integer halltypeId) {
+        this.halltypeId = halltypeId;
     }
 
     public String getSeatFile() {
@@ -108,12 +108,12 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
         this.hallFieldId = hallFieldId;
     }
 
-    public String getHallTypeName() {
-        return hallTypeName;
+    public String getHalltypeName() {
+        return halltypeName;
     }
 
-    public void setHallTypeName(String hallTypeName) {
-        this.hallTypeName = hallTypeName;
+    public void setHalltypeName(String halltypeName) {
+        this.halltypeName = halltypeName;
     }
 
     public String getSeatAddress() {
