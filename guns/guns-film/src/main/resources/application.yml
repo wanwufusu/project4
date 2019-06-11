@@ -40,6 +40,8 @@ spring:
     protocol:
       name: dubbo
       port: 20881
+  jackson:
+    default-property-inclusion: non_null
 logging:
   level.root: info
   level.com.stylefeng: debug

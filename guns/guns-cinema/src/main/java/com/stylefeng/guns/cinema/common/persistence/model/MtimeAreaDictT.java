@@ -19,45 +19,58 @@ import java.io.Serializable;
 public class MtimeAreaDictT extends Model<MtimeAreaDictT> {
 
     private static final long serialVersionUID = 1L;
+    private Boolean isActive = false;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
     /**
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer areaId;
     /**
      * 显示名称
      */
     @TableField("show_name")
-    private String showName;
+    private String areaName;
 
 
-    public Integer getUuid() {
-        return uuid;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public String getShowName() {
-        return showName;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
-    public void setShowName(String showName) {
-        this.showName = showName;
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     @Override
     protected Serializable pkVal() {
-        return this.uuid;
+        return this.areaId;
     }
 
     @Override
     public String toString() {
         return "MtimeAreaDictT{" +
-        "uuid=" + uuid +
-        ", showName=" + showName +
-        "}";
+                "areaId=" + areaId +
+                ", areaName='" + areaName + '\'' +
+                '}';
     }
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.film.common.persistence.dao.MtimeFilmDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.film.common.persistence.model.FilmDetailData">
+        <result column="film_name" property="filmName" />
+        <result column="film_en_name" property="filmEnName" />
+        <result column="img_address" property="imgAddress" />
+        <result column="film_score" property="score" />
+        <result column="film_score_num" property="scoreNum" />
+        <result column="film_box_office" property="totalBox" />
+        <result column="UUID" property="filmId" />
+    </resultMap>
+    
+    <select id="selectFilmDetailExceptInfo" resultMap="BaseResultMap">
+        SELECT
+        f.UUID, f.film_name, fi.film_en_name, f.img_address, f.film_score, fi.film_score_num,
+        f.film_box_office
+        FROM
+        mtime_film_t f, mtime_film_info_t fi
+        <where>
+            f.UUID = fi.film_id
+            <if test="filmId != null">
+               and f.UUID = #{filmId}
+            </if>
+            <if test="filmName != null">
+               and f.film_name = #{filmName}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectFilmCats" resultType="string">
+        SELECT
+        film_cats
+        FROM
+        mtime_film_t
+        WHERE
+        UUID = #{id}
+    </select>
+
+    <select id="selectFilmSource" resultType="_int">
+        SELECT
+        film_source
+        FROM
+        mtime_film_t
+        WHERE
+        UUID = #{id}
+    </select>
+
+    <select id="selectFilmLength" resultType="_int">
+        SELECT
+        film_length
+        FROM
+        mtime_film_info_t
+        WHERE
+        film_id = #{id}
+    </select>
+
+    <select id="selectFilmShowTime" resultType="string">
+        SELECT
+        film_time
+        FROM
+        mtime_film_t
+        WHERE
+        UUID = #{id}
+    </select>
+
+    <select id="selectFilmBiography" resultType="string">
+        SELECT
+        biography
+        FROM
+        mtime_film_info_t
+        WHERE
+        film_id = #{id}
+    </select>
+
+    <select id="selectFilmDirector" resultType="com.stylefeng.guns.film.common.persistence.model.Director">
+        SELECT
+        d.director_img imgAddress, d.director_name directorName
+        FROM
+        mtime_film_info_t fi, mtime_director_t d
+        WHERE
+        fi.film_id = #{id} and
+        fi.director_id = d.UUID
+    </select>
+
+    <select id="selectFilmActors" resultType="com.stylefeng.guns.film.common.persistence.model.Actor">
+        SELECT
+        fa.role_name roleName, a.actor_name directorName, a.actor_img imgAddress
+        FROM
+        mtime_film_t f, mtime_film_actor_t fa, mtime_actor_t a
+        WHERE
+        f.UUID = #{id}
+        and f.UUID = fa.film_id
+        and fa.actor_id = a.UUID
+    </select>
+
+    <select id="selectImgVO" resultType="string">
+        SELECT
+        film_imgs
+        FROM
+        mtime_film_info_t
+        WHERE
+        film_id = #{id}
+    </select>
+
+</mapper>

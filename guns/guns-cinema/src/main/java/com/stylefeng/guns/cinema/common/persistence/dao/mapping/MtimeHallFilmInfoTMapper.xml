@@ -4,14 +4,28 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.cinema.common.persistence.model.MtimeHallFilmInfoT">
-        <id column="UUID" property="uuid" />
-        <result column="film_id" property="filmId" />
-        <result column="film_name" property="filmName" />
-        <result column="film_length" property="filmLength" />
-        <result column="film_cats" property="filmCats" />
-        <result column="film_language" property="filmLanguage" />
-        <result column="actors" property="actors" />
-        <result column="img_address" property="imgAddress" />
+        <!--<id column="UUID" property="uuid" />-->
+        <result column="mhfit_film_id" property="filmId"/>
+        <result column="film_name" property="filmName"/>
+        <result column="film_length" property="filmLength"/>
+        <result column="film_language" property="filmType"/>
+        <result column="film_cats" property="filmCats"/>
+        <result column="actors" property="actors"/>
+        <result column="mhfit_img" property="imgAddress"/>
+        <collection property="filmFields" ofType="com.stylefeng.guns.cinema.common.persistence.model.MtimeFieldT">
+            <result column="mftid" property="fieldId"/>
+            <result column="begin_time" property="beginTime"/>
+            <result column="end_time" property="endTime"/>
+            <result column="film_language1" property="language"/>
+            <result column="hall_name" property="hallName"/>
+            <result column="price" property="price"/>
+        </collection>
     </resultMap>
+    <select id="findByCinemaId" resultMap="BaseResultMap">
+    SELECT mhfit.film_id as mhfit_film_id,film_name,film_length,film_language,film_language as film_language1,film_cats,actors,mhfit.img_address as mhfit_img,
+    mft.uuid as mftid,begin_time,end_time,hall_name,price
+    FROM (select * from mtime_field_t where cinema_id=#{cinemaId}) as mft
+    LEFT join  mtime_hall_film_info_t as mhfit ON mhfit.film_id=mft.film_id
+    </select>
 
 </mapper>

@@ -19,38 +19,100 @@ import java.io.Serializable;
 public class MtimeHallDictT extends Model<MtimeHallDictT> {
 
     private static final long serialVersionUID = 1L;
+    private Boolean isActive = false;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
     /**
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer halltypeId;
+
+    private String seatFile;
+
+    private String hallName;
+
+    private Integer price;
+
+    private String soldSeats;
+
+    private Integer hallFieldId;
     /**
      * 显示名称
      */
     @TableField("show_name")
-    private String showName;
+    private String halltypeName;
     /**
      * 座位文件存放地址
      */
     @TableField("seat_address")
     private String seatAddress;
 
-
-    public Integer getUuid() {
-        return uuid;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public Integer getHalltypeId() {
+        return halltypeId;
     }
 
-    public String getShowName() {
-        return showName;
+    public void setHalltypeId(Integer halltypeId) {
+        this.halltypeId = halltypeId;
     }
 
-    public void setShowName(String showName) {
-        this.showName = showName;
+    public String getSeatFile() {
+        return seatFile;
+    }
+
+    public void setSeatFile(String seatFile) {
+        this.seatFile = seatFile;
+    }
+
+    public String getHallName() {
+        return hallName;
+    }
+
+    public void setHallName(String hallName) {
+        this.hallName = hallName;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public String getSoldSeats() {
+        return soldSeats;
+    }
+
+    public void setSoldSeats(String soldSeats) {
+        this.soldSeats = soldSeats;
+    }
+
+    public Integer getHallFieldId() {
+        return hallFieldId;
+    }
+
+    public void setHallFieldId(Integer hallFieldId) {
+        this.hallFieldId = hallFieldId;
+    }
+
+    public String getHalltypeName() {
+        return halltypeName;
+    }
+
+    public void setHalltypeName(String halltypeName) {
+        this.halltypeName = halltypeName;
     }
 
     public String getSeatAddress() {
@@ -63,15 +125,7 @@ public class MtimeHallDictT extends Model<MtimeHallDictT> {
 
     @Override
     protected Serializable pkVal() {
-        return this.uuid;
+        return this.hallFieldId;
     }
 
-    @Override
-    public String toString() {
-        return "MtimeHallDictT{" +
-        "uuid=" + uuid +
-        ", showName=" + showName +
-        ", seatAddress=" + seatAddress +
-        "}";
-    }
 }

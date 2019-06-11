@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -49,7 +50,7 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
      * 电影语言
      */
     @TableField("film_language")
-    private String filmLanguage;
+    private String filmType;
     /**
      * 演员列表
      */
@@ -59,6 +60,8 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
      */
     @TableField("img_address")
     private String imgAddress;
+
+    private List<MtimeFieldT> filmFields;
 
 
     public Integer getUuid() {
@@ -101,12 +104,12 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
         this.filmCats = filmCats;
     }
 
-    public String getFilmLanguage() {
-        return filmLanguage;
+    public String getFilmType() {
+        return filmType;
     }
 
-    public void setFilmLanguage(String filmLanguage) {
-        this.filmLanguage = filmLanguage;
+    public void setFilmType(String filmType) {
+        this.filmType = filmType;
     }
 
     public String getActors() {
@@ -125,22 +128,32 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
         this.imgAddress = imgAddress;
     }
 
-    @Override
-    protected Serializable pkVal() {
-        return this.uuid;
+    public List<MtimeFieldT> getFilmFields() {
+        return filmFields;
+    }
+
+    public void setFilmFields(List<MtimeFieldT> filmFields) {
+        this.filmFields = filmFields;
     }
 
     @Override
     public String toString() {
         return "MtimeHallFilmInfoT{" +
-        "uuid=" + uuid +
-        ", filmId=" + filmId +
-        ", filmName=" + filmName +
-        ", filmLength=" + filmLength +
-        ", filmCats=" + filmCats +
-        ", filmLanguage=" + filmLanguage +
-        ", actors=" + actors +
-        ", imgAddress=" + imgAddress +
-        "}";
+                "uuid=" + uuid +
+                ", filmId=" + filmId +
+                ", filmName='" + filmName + '\'' +
+                ", filmLength='" + filmLength + '\'' +
+                ", filmCats='" + filmCats + '\'' +
+                ", filmType='" + filmType + '\'' +
+                ", actors='" + actors + '\'' +
+                ", imgAddress='" + imgAddress + '\'' +
+                ", filmFields=" + filmFields +
+                '}';
     }
+
+    @Override
+    protected Serializable pkVal() {
+        return this.uuid;
+    }
+
 }
