@@ -28,7 +28,7 @@ public class MoocOrder implements Serializable {
 
     private Double orderPrice;
 
-    private Integer orderTimestamp;
+    private Long orderTimestamp;
 
     private String orderStatus;
 }

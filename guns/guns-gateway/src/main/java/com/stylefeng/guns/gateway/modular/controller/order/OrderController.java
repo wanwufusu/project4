@@ -30,6 +30,15 @@ public class OrderController {
     @Reference(check = false)
     OrderService orderService;
 
+    @RequestMapping("buyTickets")
+    public OrderResponseVO<MoocOrder> buyTickets(int fieldId, String soldSeats, String seatsName,String token){
+        //Claims claimFromToken = jwtTokenUtil.getClaimFromToken(token);
+        //String tokenSubject = claimFromToken.getSubject();
+        String username = "admin";
+
+        OrderResponseVO<MoocOrder> orderInfo = orderService.buyTickets(fieldId, soldSeats, seatsName ,username);
+        return orderInfo;
+    }
     @RequestMapping("getOrderInfo")
     public OrderResponseVO<List<MoocOrder>> getOrderInfo(int nowPage, int pageSize, String token){
         //Claims claimFromToken = jwtTokenUtil.getClaimFromToken(token);

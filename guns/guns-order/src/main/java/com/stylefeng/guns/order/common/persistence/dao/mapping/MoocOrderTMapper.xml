@@ -28,6 +28,16 @@
         <result column="order_status" property="orderStatus" typeHandler="com.stylefeng.guns.order.common.handler.OrderStatusHandler"/>
     </resultMap>
 
+    <!--下订单用的map-->
+    <resultMap id="OrderNeedInfoMap" type="map">
+        <result column="begin_time" property="fieldTime"/>
+        <result column="price" property="filmPrice"/>
+        <result column="cinema_name" property="cinemaName"/>
+        <result column="film_name" property="filmName"/>
+        <result column="cinema_id" property="cinemaId"/>
+        <result column="film_id" property="filmId"/>
+    </resultMap>
+
     <select id="selectMoocOrderByUser" resultMap="OrderResultMap">
         SELECT
         o.UUID, c.cinema_name, fd.begin_time, fm.film_name, o.seats_name, o.order_price,
@@ -44,7 +54,7 @@
         limit #{pageSize} offset #{offset}
     </select>
 
-    <!--座位-->
+    <!--已售出座位-->
     <select id="selectSoldSeats" resultType="string">
         SELECT
         seats_ids
@@ -54,4 +64,50 @@
         field_id = #{fieldId}
     </select>
 
+    <!--查询大厅座位信息json-->
+    <select id="selectHallSeat" resultType="string">
+        SELECT
+        hd.seat_address
+        FROM
+        mtime_hall_dict_t hd, mtime_field_t f
+        where
+        f.UUID = #{fieldId}
+        and f.hall_id = hd.UUID
+    </select>
+
+    <!--查询下单购票时具体场次所需要的信息-->
+    <select id="selectOrderNeedInfoByField" resultMap="OrderNeedInfoMap">
+        SELECT
+        fd.begin_time, fd.price, c.cinema_name,fd.cinema_id,fd.film_id, fm.film_name
+        FROM
+        mtime_field_t fd,mtime_cinema_t c,
+        mtime_film_t fm
+        WHERE
+        fd.UUID = #{fieldId}
+        and fd.cinema_id = c.UUID
+        and fd.film_id = fm.UUID
+    </select>
+
+    <!--添加订单-->
+    <insert id="insertOrder">
+        INSERT
+        INTO
+        mooc_order_t
+        (UUID,field_id, cinema_id,film_id,seats_ids,seats_name,film_price,order_price,order_time,order_user,order_status)
+        VALUES (
+        #{order.orderId},#{fieldId},#{cinemaId},#{filmId},#{seatIds},#{order.seatsName},
+        #{filmPrice},#{order.orderPrice},#{order.orderTimestamp, typeHandler=com.stylefeng.guns.order.common.handler.LongToDateHandler},
+        #{userId},#{order.orderStatus}
+        )
+    </insert>
+
+    <!--根据用户名查找用户-->
+    <select id="getUserId" resultType="_int">
+        select
+        UUID
+        from
+        mtime_user_t
+        where
+        user_name = #{username}
+    </select>
 </mapper>

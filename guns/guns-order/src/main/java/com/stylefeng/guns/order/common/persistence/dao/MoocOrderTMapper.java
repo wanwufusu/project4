@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,4 +23,15 @@ public interface MoocOrderTMapper extends BaseMapper<MoocOrder> {
                                           @Param("pageSize")int pageSize);
 
     List<String> selectSoldSeats(Integer fieldId);
+
+    String selectHallSeat(int fieldId);
+
+    Map<String, Object> selectOrderNeedInfoByField(int fieldId);
+
+    void insertOrder(@Param("order")MoocOrder moocOrder, @Param("userId")Integer userId,
+                     @Param("filmPrice")Double filmPrice, @Param("cinemaId")String cinemaId,
+                     @Param("filmId")String filmId, @Param("fieldId") Integer fieldId,
+                     @Param("seatIds")String seatIds);
+
+    Integer getUserId(String username);
 }

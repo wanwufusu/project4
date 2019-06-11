@@ -25,7 +25,9 @@ public class GunsOrderApplicationTests {
 	public void MyTest(){
 /*		OrderResponseVO<List<MoocOrder>> admin = orderService.getOrderInfo(1, 5, "admin");
 		System.out.println(admin);*/
-		orderService.isIllegalSeat("123");
+		//orderService.isLegalSeat("1,2,3", "seats/cgs.json");
+		OrderResponseVO<MoocOrder> moocOrderOrderResponseVO = orderService.buyTickets(1, "5,6,7", "一排一座", "alibaba");
+		System.out.println(moocOrderOrderResponseVO);
 	}
 
 

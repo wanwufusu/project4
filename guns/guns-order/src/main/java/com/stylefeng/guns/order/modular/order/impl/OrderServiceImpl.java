@@ -1,6 +1,7 @@
 package com.stylefeng.guns.order.modular.order.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.stylefeng.guns.cinema.common.persistence.model.MtimeHallDictT;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.order.common.exception.OrderException;
 import com.stylefeng.guns.order.common.persistence.dao.MoocOrderTMapper;
@@ -9,13 +10,13 @@ import com.stylefeng.guns.order.common.persistence.model.OrderResponseVO;
 import com.stylefeng.guns.order.common.persistence.model.Seat;
 import com.stylefeng.guns.order.common.persistence.service.OrderService;
 import com.stylefeng.guns.util.JsonUtils;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -48,8 +49,32 @@ public class OrderServiceImpl implements OrderService {
                 throw new GunsException(OrderException.POST_ORDER_ERROR);
             }
         }
+        String orderId = UUID.randomUUID().toString().replace("-", "");
+        Map<String, Object> findByField = moocOrderTMapper.selectOrderNeedInfoByField(fieldId);
 
-
+        MoocOrder moocOrder = new MoocOrder();
+        moocOrder.setOrderId(orderId);
+        moocOrder.setCinemaName((String) findByField.get("cinemaName"));
+        String cinemaId = String.valueOf(findByField.get("cinemaId"));
+        moocOrder.setFieldTime((String) findByField.get("fieldTime"));
+        moocOrder.setFilmName((String) findByField.get("filmName"));
+        String filmId = String.valueOf(findByField.get("filmId"));
+        Double filmPrice = Double.valueOf(String.valueOf(findByField.get("filmPrice")));
+        double orderPrice = filmPrice * soldSeats.split(",").length;
+        moocOrder.setOrderPrice(orderPrice);
+        moocOrder.setOrderStatus("0");
+        moocOrder.setOrderTimestamp(new Date().getTime());
+        moocOrder.setSeatsName(seatsName);
+        Integer userId = moocOrderTMapper.getUserId(username);
+        try {
+            moocOrderTMapper.insertOrder(moocOrder, userId, filmPrice, cinemaId, filmId, fieldId, soldSeats);
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new GunsException(OrderException.ORDER_SYSTEM_ERROR);
+        }
+        OrderResponseVO<MoocOrder> moocOrderOrderResponseVO = new OrderResponseVO<>();
+        moocOrderOrderResponseVO.ok(moocOrder);
+        return moocOrderOrderResponseVO;
     }
 
     @Override
