@@ -21,9 +21,63 @@
     </resultMap>
 
 
-   <!-- <select id="validate"  resultMap="BaseResultMap">
+    <select id="validate"  resultMap="BaseResultMap">
         select user_name,user_pwd from mtime_user_t
-        where user_name = #{userName} and user_pwd= #{password}
-    </select>-->
+        where user_name = #{user.userName} and user_pwd= #{user.password}
+    </select>
 
+    <select id="selectUserByName" resultMap="BaseResultMap">
+        select UUID,user_name,user_pwd,nick_name,user_sex,birthday,email,user_phone,address,head_url,biography,life_state,,begin_time,update_time
+        from mtime_user_t
+        where  user_name = #{name}
+    </select>
+
+    <select id="selectUserByName" resultMap="BaseResultMap">
+        select UUID,user_name,user_pwd,nick_name,user_sex,birthday,email,user_phone,address,head_url,biography,life_state,,begin_time,update_time
+        from mtime_user_t
+        where  UUID = #{id}
+    </select>
+
+    <update id="updateUserById" >
+        update mtime_user_t
+        <set>
+            <if test="userName!=null" >
+                user_name = #{user.userName},
+            </if>
+            <if test="password!=null">
+                user_pwd = #{user.password},
+            </if>
+            <if test="nickname!=null">
+                nick_name = #{user.nickname},
+            </if>
+            <if test="sex!=null">
+                user_sex = #{user.sex},
+            </if>
+            <if test="birthday!=null">
+                birthday = #{user.birthday},
+            </if>
+            <if test="email!=null">
+                email = #{user.email},
+            </if>
+            <if test="phone!=null">
+                user_phone = #{user.phone},
+            </if>
+            <if test="address!=null">
+                address = #{user.address},
+            </if>
+            <if test="headAddress!=null">
+                head_url =#{user.headAddress},
+            </if>
+            <if test="biography!=null">
+                biography = #{user.biography},
+            </if>
+            <if test="life_state!=null">
+                life_state = #{user.life_state},
+            </if>
+            <if test="updateTime!=null">
+                update_time = now(),
+            </if>
+        </set>
+        where UUID = #{user.uuid}
+    </update>
 </mapper>
