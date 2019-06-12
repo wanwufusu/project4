@@ -6,6 +6,7 @@ import com.stylefeng.guns.gateway.common.exception.BizExceptionEnum;
 import com.stylefeng.guns.gateway.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.gateway.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.user.entity.MtimeUserT;
+import com.stylefeng.guns.user.entity.UserVO;
 import com.stylefeng.guns.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,15 +24,15 @@ public class AuthController {
     private UserService service;
 
     @RequestMapping(value = "${jwt.auth-path}")
-    public ResponseEntity<?> createAuthenticationToken(MtimeUserT user) {
+    public UserVO<?> createAuthenticationToken(MtimeUserT user) {
 
         boolean validate = service.validate(user);
 
         if (validate) {
             final String randomKey = jwtTokenUtil.getRandomKey();
-            final String token = jwtTokenUtil.generateToken(user.getUserName(), randomKey);
-            service.tokenBuffer(user.getUserName(), token);
-            return ResponseEntity.ok(new AuthResponse(token, randomKey));
+            final String token = jwtTokenUtil.generateToken(user.getUsername(), randomKey);
+            service.tokenBuffer(user.getUsername(), token);
+            return new UserVO<AuthResponse>(0,null,new AuthResponse(token, randomKey));
         } else {
             throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }
