@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO register(MtimeUserT user) throws GunsException {
         try {
-            if (isUserName(user.getUserName())) {
+            if (isUserName(user.getUsername())) {
                 throw new GunsException(UserExceptionEnum.USER_OCCUPIED_ERROR);
             }
             user.setPassword(MD5Util.encrypt(user.getPassword()));
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Boolean validate(MtimeUserT user) {
-        List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", user.getUserName()));
+        List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", user.getUsername()));
         if (userExist.size()==0){
             return false;
         }

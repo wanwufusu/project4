@@ -2,7 +2,6 @@ package com.stylefeng.guns.fastjson;
 
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.guns.core.util.MD5Util;
-import com.stylefeng.guns.user.common.SimpleObject;
 import com.stylefeng.guns.user.modular.auth.converter.BaseTransferEntity;
 
 /**
@@ -14,7 +13,7 @@ import com.stylefeng.guns.user.modular.auth.converter.BaseTransferEntity;
 
 
 public class JsonTest {
-
+/*
     public static void main(String[] args) {
         String randomKey = "1xm7hw";
 
@@ -30,5 +29,5 @@ public class JsonTest {
         baseTransferEntity.setSign(encrypt);
 
         System.out.println(JSON.toJSONString(baseTransferEntity));
-    }
+    }*/
 }

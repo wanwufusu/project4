@@ -2,7 +2,7 @@ package com.stylefeng.guns.jwt;
 
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.guns.core.util.MD5Util;
-import com.stylefeng.guns.user.common.SimpleObject;
+//import com.stylefeng.guns.user.common.SimpleObject;
 import com.stylefeng.guns.user.modular.auth.converter.BaseTransferEntity;
 import com.stylefeng.guns.user.modular.auth.security.impl.Base64SecurityAction;
 
@@ -14,7 +14,7 @@ import com.stylefeng.guns.user.modular.auth.security.impl.Base64SecurityAction;
  */
 public class DecryptTest {
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
 
         String salt = "0iqwhi";
 
@@ -33,5 +33,5 @@ public class DecryptTest {
         baseTransferEntity.setSign(md5);
 
         System.out.println(JSON.toJSONString(baseTransferEntity));
-    }
+    }*/
 }
