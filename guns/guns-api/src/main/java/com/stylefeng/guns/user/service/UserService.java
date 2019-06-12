@@ -12,7 +12,7 @@ public interface UserService {
 
     Boolean isUserName(String username);
 
-    Boolean validate(MtimeUserT user);
+    Boolean validate(String username,String password);
 
     void tokenBuffer(String userName, String token);
 

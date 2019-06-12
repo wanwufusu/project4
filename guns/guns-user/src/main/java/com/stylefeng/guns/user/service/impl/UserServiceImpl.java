@@ -69,16 +69,15 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 登录时与SQL验证账户名与密码
-     * @param user
      * @return
      */
     @Override
-    public Boolean validate(MtimeUserT user) {
-        List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", user.getUsername()));
+    public Boolean validate(String username,String password) {
+        List<MtimeUserT> userExist = mapper.selectList(new EntityWrapper<MtimeUserT>().eq("user_name", username));
         if (userExist.size()==0){
             return false;
         }
-        if (MD5Util.encrypt(user.getPassword())!=userExist.get(0).getPassword()) {
+        if (MD5Util.encrypt(password)!=userExist.get(0).getPassword()) {
             return true;
         } else {
             return false;
