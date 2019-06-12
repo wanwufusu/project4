@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
                 throw new GunsException(UserExceptionEnum.USER_OCCUPIED_ERROR);
             }
             user.setPassword(MD5Util.encrypt(user.getPassword()));
-            mapper.insert(user);
+            mapper.insertAllColumn(user);
         } catch (GunsException e) {
             throw e;
         } catch (Exception e) {
